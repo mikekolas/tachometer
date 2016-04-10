@@ -7,7 +7,7 @@ unsigned int counter = -2; //this is -2 because in order to save value in Averag
 float RPM=0;
 
 float AverageArray[NUM_VALUES]; //array with 10 values that are used to return a RPM with the average value of 10 measurements
-for(int i=0;i < NUM_VALUES;i++
+for(int i=0;i < NUM_VALUES;i++)
 {
   AverageArray[i]=0; //make each element equals to zero
 }
