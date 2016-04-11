@@ -3,7 +3,7 @@
 unsigned int passes = 0;
 unsigned long first = 0;
 unsigned long last = 0;
-unsigned int counter = -2; //this is -2 because in order to save value in AverageArray[0] when we access *if* in void loop()passes is *passes==2*, so counter must be *counter==0*
+int counter = -2; //this is -2 because in order to save value in AverageArray[0] when we access *if* in void loop()passes is *passes==2*, so counter must be *counter==0*
 float RPM=0;
 
 float AverageArray[NUM_VALUES]; //array with 10 values that are used to return a RPM with the average value of 10 measurements
