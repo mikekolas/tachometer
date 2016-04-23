@@ -9,7 +9,6 @@ int counter = 0;  //readIndex                this is -2 because in order to save
 int RPM=0;
 
 int AverageArray[NUM_VALUES]; //array with 10 values that are used to return a RPM with the average value of 10 measurements
-int min=0;
 
 
 void blade_Pass(){
@@ -25,25 +24,9 @@ void blade_Pass(){
   }
 }
 
-void setup()
+void bubbleSort()
 {
-  attachInterrupt(0,blade_Pass,FALLING);
-  Serial.begin(9600);
-  for(int i=0;i < NUM_VALUES; i++)
-  {
-    AverageArray[i]=0; //make each element equals to zero
-  }
-}
-
-
-void loop()
-{
-  if (passes > 1){  //2 rounds per dt
-    float passesPerSecond = (float)passes / ((float)last - (float)first) * 1000.0 * 1000.0;
-    AverageArray[counter] = passesPerSecond * 30.0;// 60.0/2
-    counter++;
-    
-    if(counter >=10)  //bubble sort
+  if(counter >= 10)  //bubble sort
     {
         for(int i=0; i<NUM_VALUES-1; i++)
         {
@@ -57,27 +40,33 @@ void loop()
             }
           }
         }
-        
-        
-        if(millis() - Timer >= 1000)
-        {
-          Timer = millis();
-          Serial.print("RPM: ");
-          Serial.println(AverageArray[4]);
-//          for(int i=0;i<NUM_VALUES;i++)
-//          {
-//             Serial.println(AverageArray[i]);
-//             
-//          }
-//          Serial.println("----");
-        }
-        
+        Serial.println(AverageArray[4]);
         counter = 0;
-     }
+    }
+}
 
-    passes = 0;
-    delay(1);
+void setup()
+{
+  attachInterrupt(0,blade_Pass,FALLING);
+  Serial.begin(9600);
+  for(int i=0;i < NUM_VALUES; i++)
+  {
+    AverageArray[i]=0; //make each element equals to zero
   }
+}
+
+
+void loop()
+{
+  if (passes > 1)
+  {  //2 rounds per dt
+    float passesPerSecond = (float)passes / ((float)last - (float)first) * 1000.0 * 1000.0;
+    AverageArray[counter] = passesPerSecond * 30.0;// 60.0/2
+    counter++;
+    bubbleSort();
+    passes = 0;
+  }
+
   
   attachInterrupt(0,blade_Pass,FALLING);
 }
