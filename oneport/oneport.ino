@@ -19,14 +19,14 @@ void blade_Pass(){
 void setPin()
 // function to select pin on 74HC4067
 {
-  PORTD = controlPin;
+  PORTB = controlPin;
 }
 
 void setup(){
 
   attachInterrupt(0,blade_Pass,FALLING);
   Serial.begin(9600);
-  DDRD = B11110000;
+  DDRB = B11110000;
   setPin();
 }
 
