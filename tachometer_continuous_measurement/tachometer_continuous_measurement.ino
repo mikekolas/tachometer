@@ -19,22 +19,15 @@ void setup(){
   Serial.begin(9600);
 }
 
-
 void loop(){
-  //detachInterrupt(digitalPinToInterrupt(2));
-  if (passes > 1){
+  if (passes > 1)
+  {
     float passesPerSecond = (float)passes / ((float)last - (float)first) * 1000.0 * 1000.0;
     float RPM = passesPerSecond * 30.0;// / numBlades;
      
     passes = 0;
-//    if(millis() - Timer >= 10)
-//        {
-//          Timer = millis();
-     
-          Serial.println((int)RPM);
-          
-//        }
+
+    Serial.println((int)RPM);
   }
-  
   attachInterrupt(0,blade_Pass,FALLING);
 }

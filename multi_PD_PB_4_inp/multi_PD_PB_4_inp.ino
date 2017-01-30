@@ -1,5 +1,5 @@
-//This script takes 2 inputs from multiplexer
-//Κώδικας που λειτουργεί με 2 πολυπλέκτες και είσοδο που δίνεται μόνο στα 2 C0. Στο D port S0-->D7..S3-->D4 , Στο B port S0-->D13..S3-->D10
+//This script takes 2 inputs from each multiplexer
+//Κώδικας που λειτουργεί με 2 πολυπλέκτες και είσοδο που δίνεται μόνο στα 2 C0 και C1. Στο D port S0-->D7..S3-->D4 , Στο B port S0-->D13..S3-->D10
 #define FANS 2
 
 unsigned int passes = 0;
