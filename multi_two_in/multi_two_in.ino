@@ -5,8 +5,8 @@ unsigned long last = 0;  //variable for the calculation of dt
 
 unsigned long Timer = 0; //variable for the pseudo delay, tha holds tha value of the millis() in each iteration
 int index = 0; //variable to 
-byte controlPins[] = {B00000000, B10000000, B01000000, B11000000,B00100000}; 
-float muxValues[] = {0,0,0,0,0};
+byte controlPins[] = {B00000000, B00100000}; 
+float muxValues[] = {0,0};
 
 float RPM=0;
 void blade_Pass()
@@ -46,9 +46,11 @@ void loop(){
       if(millis()-Timer >=1000) // This is a pseudo delay. This is used because of the usage of interrupt, we do not want to disturb the process
       {
        Timer = millis();
+       Serial.print(index + 1);
+       Serial.print("o - ");
        Serial.println((int)muxValues[index]);
        index++;
-       if(index>4) index = 0;       
+       if(index>1) index = 0;       
        setPin(index); // choose an input pin on the 74HC4067
       }//if
     }//if
